@@ -1,9 +1,8 @@
 import * as pdfjsLib from 'pdfjs-dist';
-// @ts-ignore - Vite specific import
-import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 
-// Set worker source for pdfjs locally using Vite's ?url pattern
-pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
+// Use a direct path to the worker file copied to the public folder
+// This prevents Vite/Rollup from minifying the worker and breaking it in production
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 export interface PDFPageData {
   pageNumber: number;
